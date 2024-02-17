@@ -20,6 +20,12 @@ Matrix2D::Matrix2D(int rows, int columns)
     }
 }
 
+Matrix2D::~Matrix2D()
+{
+    //Does this create a memory leak?
+    delete[] arr;
+}
+
 void Matrix2D::print() const
 {
     cout << "[";
@@ -63,7 +69,7 @@ numType Matrix2D::get(int r, int c) const
     return arr[r][c];
 }
 
-Matrix2D Matrix2D::dot(const Matrix2D &rMatrix)
+Matrix2D Matrix2D::dot(const Matrix2D &rMatrix) const
 {
     //Check if it is a valid dot product
     if(numColumns != rMatrix.numRows)
@@ -86,8 +92,25 @@ Matrix2D Matrix2D::dot(const Matrix2D &rMatrix)
             {
                 value += arr[r][i] * rMatrix.get(i, c);
             }
-            resultant.set(value, r, c);
+            resultant.arr[r][c] = value;
         }
     }
     return resultant;
+}
+
+Matrix2D Matrix2D::transpose() const
+{
+    //Create a matrix with swapped dimensions
+    Matrix2D transposed(numColumns, numRows);
+    
+    //Set values
+    for(int r = 0; r < numRows; r++)
+    {
+        for(int c = 0; c < numColumns; c++)
+        {
+            transposed.arr[c][r] = arr[r][c];
+        }
+    }
+    
+    return transposed;
 }
