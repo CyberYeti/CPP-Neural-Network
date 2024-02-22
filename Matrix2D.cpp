@@ -22,7 +22,10 @@ Matrix2D::Matrix2D(int rows, int columns)
 
 Matrix2D::~Matrix2D()
 {
-    //Does this create a memory leak?
+    for(int i = 0; i < numRows; i++)
+    {
+        delete[] arr[i];
+    }
     delete[] arr;
 }
 
