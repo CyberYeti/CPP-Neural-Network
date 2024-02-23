@@ -22,9 +22,9 @@ class Layer
             return Matrix2D(1,1);
         }
         
-        Matrix2D getInput() const { return input; }
+        Matrix2D& getInput() { return input; }
         
-        void setInput(Matrix2D inp) { input = inp; }
+        void setInput(const Matrix2D& inp) { input = inp; }
 };
 
 #endif

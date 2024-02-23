@@ -1,17 +1,11 @@
 #include "ReLU.h"
-#include "Matrix2D.h"
-
 #include <iostream>
 using namespace std;
 
 Matrix2D ReLU::forwardProp(const Matrix2D& inp)
 {
-    cout << "Start\n";
     //Save input
     setInput(inp);
-    
-    //inp.print();
-    cout << "Saved\n";
     
     //Create output Matrix
     Matrix2D output(inp.getRows(), inp.getColumns());
@@ -21,7 +15,6 @@ Matrix2D ReLU::forwardProp(const Matrix2D& inp)
     {
         for(int c = 0; c < inp.getColumns(); c++)
         {
-            cout << inp.get(r,c) << endl;
             //ReLU function
             if(inp.get(r,c) > 0)
             {
@@ -33,14 +26,12 @@ Matrix2D ReLU::forwardProp(const Matrix2D& inp)
             }
         }
     }
-    
-    output.print();
-    cout << "Done\n";
     return output;
 }
 
 Matrix2D ReLU::backProp(const Matrix2D& outputGradient, double learnRate)
 {
+    outputGradient.print();
     //Create the input gradient matrix
     Matrix2D inputGradient(outputGradient.getRows(), outputGradient.getColumns());
     
@@ -55,5 +46,6 @@ Matrix2D ReLU::backProp(const Matrix2D& outputGradient, double learnRate)
         }
     }
     
+    outputGradient.print();
     return inputGradient;
 }

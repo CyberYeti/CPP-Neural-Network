@@ -25,7 +25,10 @@ int main()
     ReLU relu;
     Matrix2D ReLUOut = relu.forwardProp(mat1);
     ReLUOut.print();
+    cout << endl;
     
+    Matrix2D ReLUDerivitive = relu.backProp(ReLUOut, 0.1);
+    ReLUDerivitive.print();
     
     return 0;
 }
