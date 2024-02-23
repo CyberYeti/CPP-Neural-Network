@@ -11,13 +11,13 @@ class Layer
     public:
         Layer(): input(1,1) {};
     
-        Matrix2D forwardProp(const Matrix2D& inp)
+        virtual Matrix2D forwardProp(const Matrix2D& inp)
         {
             input = inp;
             return Matrix2D(1, 1);
         }
         
-        Matrix2D backProp(const Matrix2D& outputGradient, double learnRate)
+        virtual Matrix2D backProp(const Matrix2D& outputGradient, double learnRate)
         {
             return Matrix2D(1,1);
         }
